@@ -1,0 +1,184 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <div class="span9">
+        <div class="content">
+            <div class="module">
+                <div class="module-head">
+                    <h3>数据清洗</h3>
+                </div>
+                <div class="module-body">
+                    <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal" method="get" action="cleandata">
+                                <div class="control-group">
+                                    <label class="control-label" for="cleanrule">清洗规则:</label>
+                                    <div class="controls">
+                                        <textarea class="span4" rows="5" id="cleanrule" name="cleanrule"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary btn-large" style="width: 200px">开始清洗</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-head">
+                    <h3>文本处理</h3>
+                </div>
+                <div class="modal-body">
+                     <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal">
+                                <div class="control-group row-fluid">
+                                    <div class="controls">
+                                        <a class="btn btn-primary btn-large" style="width: 180px" href="divideword">分词</a>
+                                        <a class="btn btn-primary btn-large" style="width: 180px" href="extractkeyword">关键词提取</a>
+                                        <a class="btn btn-primary btn-large" style="width: 180px" href="sentimentanalysis">情感极性分析</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                     </ul>
+                </div>
+            </div><!--/.module1-->
+
+            <div class="module">
+                <div class="module-head">
+                    <h3>主题分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal" name="input" action="topicanalysis">
+                                <div class="control-group">
+                                    <label class="control-label">角度:</label>
+                                    <div class="controls">
+                                        <label class="radio inline">
+                                            <input type="radio" name="myrole" id="usr" value="usr" checked="">
+                                            用户
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="myrole" id="blog" value="blog">
+                                            内容
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">文档提取参数:</label>
+                                    <div class="controls form-inline">
+                                        <label>
+                                            最少词数:
+                                            <input type="text" id="mintoken" class="span1" name="mintoken"/>
+                                        </label>
+                                        <label>
+                                            最小词频:
+                                            <input type="text" id="minfre" class="span1" name="minfre"/>
+                                        </label>
+                                        <label id="mindoc_label">
+                                            最少微博数:
+                                            <input type="text" id="mindoc" class="span1" name="mindoc"/>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                        <label class="control-label">选择模型:</label>
+                                        <div class="controls">
+                                            <label class="radio inline">
+                                                <input type="radio" name="model" id="modelLda" value="lda" checked="">
+                                                LDA
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="model" id="modelHdp" value="hdp">
+                                                HDP
+                                            </label>
+                                        </div>
+                                    </div>
+                                        <div class="control-group">
+                                            <label class="control-label">模型参数:</label>
+                                            <div class="controls">
+                                                <div class="form-inline">
+                                                    <label>
+                                                        迭代次数:
+                                                        <input type="text" id="estniters" class="span1" name="estniters">
+                                                    </label>
+                                                    <div id="needhide">
+                                                        <label>
+                                                        主题个数:
+                                                        <input type="text" id="ntopics" class="span1" name="ntopics">
+                                                        </label>
+                                                        <label>
+                                                            &#945:
+                                                        <input type="text" id="estalpha" class="span1" name="estalpha">
+                                                        </label>
+                                                        <label>
+                                                            &#946:
+                                                            <input type="text" id="estbeta" class="span1" name="estbeta">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary btn-large" style="width: 200px">开始分析</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--/.modile2-->
+
+            <div class="module">
+                <div class="module-head">
+                    <h3>关联内容用户投票合并</h3>
+                </div>
+                <div class="modal-body">
+                     <ul class="widget widget-usage unstyled">
+                        <li>
+                    <form class="form-horizontal" role="form" action="combine">
+                        <div class="control-group">
+                            <label class="control-label">参数:</label>
+                            <div class="controls form-inline">
+                                <label>关键词个数:
+                                    <input type="text" id="tokennum" class="span1" name="tokennum">
+                                </label>
+                                <label>海明距离:
+                                    <input type="text" id="distance" class="span1" name="distance">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary btn-large" style="width: 200px">开始合并</button>
+                            </div>
+                        </div>
+                    </form>
+                        </li>
+                     </ul>
+                </div>
+            </div><!--/.module3-->
+        </div><!--/.content-->
+    </div><!--/.span9-->
+    <div class="container">
+        <h2></h2>>
+        <div id="example" class="modal hide fade in" style="display: none;">
+            <div class="modal-header">
+                <h3>example</h3>
+            </div>
+            <div class="modal-body">
+                <p>my text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-success">确定</a>
+                <a href="#" class="btn" data-dismiss="modal">关闭</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

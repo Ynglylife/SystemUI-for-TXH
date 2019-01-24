@@ -1,0 +1,145 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+    <!--/.span3-->
+    <div class="span9">
+        <div class="content">
+            <div class="module">
+                <div class="module-head">
+                    <h3>模型输入数据提取</h3>
+                </div>
+                <div class="module-body">
+                     <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal" action="extractinput">
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        参数：
+                                    </label>
+                                    <div class="controls form-inline">
+                                        <label>
+                                            用户参与最少次数：
+                                            <input type="text" id="mininvolved" class="span1" name="mininvolved">
+                                        </label>
+                                        <label>
+                                            微博最少转发次数：
+                                            <input type="text" id="minretweet" class="span1" name="minretweet">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-large btn-primary" style="width: 200px">开始提取</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                     </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-head">
+                    <h3>模型参数求解</h3>
+                </div>
+                <div class="module-body">
+                    <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal" action="solveelement">
+                                <div class="control-group">
+                                    <label class="control-label">参数：</label>
+                                    <div class="controls form-inline">
+                                        <label>
+                                            迭代次数：
+                                            <input type="text" id="niters" class="span1" name="niters">
+                                        </label>
+                                        <label>
+                                            主题个数：
+                                            <input type="text" id="ntopics" class="span1" name="ntopics">
+                                        </label>
+                                    </div>
+                                    <div class="controls form-inline">
+                                        <label>
+                                            &#945:
+                                            <input type="text" id="alpha" class="span1" name="alpha">
+                                        </label>
+                                        <label>
+                                            &#946:
+                                            <input type="text" id="beta" class="span1" name="beta">
+                                        </label>
+                                        <label>
+                                            &#947:
+                                            <input type="text" id="gamma" class="span1" name="gamma">
+                                        </label>
+                                        <label>
+                                            &#951:
+                                            <input type="text" id="itard" class="span1" name="itard">
+                                        </label>
+                                        <label>
+                                            &#964:
+                                            <input type="text" id="tau" class="span1" name="tau">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-large btn-primary" style="width: 200px">开始求解</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-head">
+                    <h3>结果展示</h3>
+                </div>
+                <div class="module-body">
+                    <ul class="widget widget-usage unstyled">
+                        <li>
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <div class="controls form-inline">
+                                        <a type="submit" class="btn btn-large btn-primary" style="width: 180px" href="credibleblogtop100">可信微博Top100</a>
+                                        <a type="submit" class="btn btn-large btn-primary" style="width: 180px" href="credibleblogbuttom100">可信微博Bottom100</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <div class="controls form-inline">
+                                        <a type="submit" class="btn btn-large btn-primary" style="width: 180px" href="conformableusrtop100">从众用户Top100</a>
+                                        <a type="submit" class="btn btn-large btn-primary" style="width: 180px" href="conformableusrbuttom100">从众用户Bottom100</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <div class="controls" style="padding-left: 100px">
+                                        <a type="submit" class="btn btn-large btn-primary" style="width: 180px" href="topicmastertop100">主题专家Top100</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <div class="modal-body specialDiv" style="height: 300px">
+                                <ul>
+                                {% if datalist %}
+                                    {% for data in datalist %}
+                                        <li>{{ data }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/.content-->
+    </div>
+    <!--/.span9-->
+{% endblock %}

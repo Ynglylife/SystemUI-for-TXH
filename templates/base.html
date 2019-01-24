@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>系统展示</title>
+        <link type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+        <link type="text/css" href="{% static "bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+        <link type="text/css" href="{% static "css/theme.css" %}" rel="stylesheet">
+        <link type="text/css" href="{% static "images/icons/css/font-awesome.css" %}" rel="stylesheet">
+        <link type="text/css" href="{% static "bootstrap/css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet" media="screen">
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+            rel='stylesheet'>
+        <style type="text/css">
+        .specialDiv{
+            border-top:     2px    solid  #a2a2a2;    /*上边框线*/
+            border-bottom:  2px    solid  #a2a2a2;    /*下边框线*/
+            border-left:    2px    solid  #a2a2a2;    /*左边框线  solid实线*/
+            border-right:   2px    solid  #a2a2a2;    /*右边框线*/
+        }
+        </style>
+    </head>
+    <body>
+        <!-- /navbar -->
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="sidebar">
+                            <ul class="widget widget-menu unstyled">
+                                <!--<li class="active"><a href="/"><i class="menu-icon icon-dashboard"></i>数据浏览
+                                </a></li>-->
+                                <li class="active"><a href="/activity"><i class="menu-icon icon-bullhorn"></i> 文本处理 </a>
+                                </li>
+                                <li><a href="/message"><i class="menu-icon icon-inbox"></i>模型求解</a></li>
+                            </ul>
+                            <!--/.widget-nav-->
+                        </div>
+                        <!--/.sidebar-->
+                    </div>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.wrapper-->
+        <script src="{% static "scripts/jquery-1.9.1.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "scripts/jquery-ui-1.10.1.custom.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+        <script type="text/javascript" src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}" charset="UTF-8"></script>
+        <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+        </script>
+        <script>
+        $(function () {
+
+        $("input:radio").click(function () {
+            var val = $('input:radio[name="myrole"]:checked').val();
+            if(val == "usr"){
+                $("#mindoc_label").show();
+            }else if(val == "blog"){
+                $("#mindoc_label").hide();
+            }
+        });
+        })
+        </script>
+        <script>
+        $(function () {
+
+        $("input:radio").click(function () {
+            var val = $('input:radio[name="model"]:checked').val();
+            if(val == "lda"){
+                $("#needhide").show();
+            }else if(val == "hdp"){
+                $("#needhide").hide();
+            }
+        });
+        })
+        </script>
+        <script>
+            $(function () {
+               $("#clean_action").popover({trigger:'click'});
+            });
+        </script>
+    </body>
+</html>
